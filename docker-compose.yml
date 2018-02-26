@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  locations.app:
+    build: .
+    links:
+      - locations.mongodb
+    depends_on:
+      - locations.mongodb
+    ports:
+      - "10010:10010"
+    expose:
+      - 10010
+
+  locations.mongodb:
+    image: ellerbrock/alpine-mongodb
+    container_name: locations.mongodb
+    ports:
+      - "27017:27017"
